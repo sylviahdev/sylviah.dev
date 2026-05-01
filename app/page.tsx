@@ -2,14 +2,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight } from "lucide-react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, Variants } from "framer-motion";
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 }, // Increased y for more noticeable slide-up
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }, // Smoother ease
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1, // Slightly increased stagger and delay
