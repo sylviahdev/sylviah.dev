@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight } from "lucide-react";
+import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight, MessageCircle } from "lucide-react";
 import { motion, useScroll, useSpring, Variants } from "framer-motion";
 
 const fadeInUp: Variants = {
@@ -60,15 +60,14 @@ export default function CVPage() {
             ))}
           </div>
 
-          <motion.a
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="/Sylviah_Rutto_CV.pdf"
-            download
-            className="hidden md:block px-6 py-2 bg-[#1a1a1a] dark:bg-[#fafaf8] text-[#fafaf8] dark:text-[#1a1a1a] rounded-full font-medium text-sm hover:shadow-lg transition-shadow"
+            onClick={() => window.location.href = 'mailto:sylviah.rutto@gmail.com'}
+            className="hidden md:block px-6 py-2 bg-[#c5a358] text-white rounded-full font-semibold text-sm hover:shadow-lg transition-all"
           >
-            Download CV
-          </motion.a>
+            Hire Me
+          </motion.button>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -93,14 +92,16 @@ export default function CVPage() {
                 {item}
               </button>
             ))}
-            <motion.a
+            <motion.button
               whileTap={{ scale: 0.98 }}
-              href="/Sylviah_Rutto_CV.pdf"
-              download
+              onClick={() => {
+                window.location.href = 'mailto:sylviah.rutto@gmail.com';
+                setMenuOpen(false);
+              }}
               className="w-full mt-2 px-4 py-3 bg-[#c5a358] text-white rounded-full font-medium text-base shadow-sm"
             >
-              Download CV
-            </motion.a>
+              Hire Me
+            </motion.button>
           </motion.div>
         )}
       </nav>
@@ -152,7 +153,27 @@ export default function CVPage() {
                 I build scalable web applications using React, Next.js, and Python, focusing on performance, clean architecture, and user-centered design. I enjoy turning complex ideas into fast, reliable, and visually refined digital products.
               </p>
 
-              <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start text-sm">
+              <div className="flex flex-wrap gap-4 mb-10 justify-center md:justify-start">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => scrollTo('contact')}
+                  className="px-8 py-4 bg-[#c5a358] text-white rounded-full font-bold text-lg shadow-lg hover:shadow-[#c5a358]/20 transition-all"
+                >
+                  Let's Work Together
+                </motion.button>
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="/Sylviah_Rutto_CV.pdf"
+                  download
+                  className="px-8 py-4 border border-[#e2dfd7] dark:border-[#141414] text-[#1a1a1a] dark:text-[#fafaf8] rounded-full font-bold text-lg hover:bg-[#f3f1ed] dark:hover:bg-[#1f1f1b] transition-all"
+                >
+                  Download CV
+                </motion.a>
+              </div>
+
+              <div className="flex flex-wrap gap-6 md:gap-10 items-center md:items-start text-sm opacity-80">
                 <a
                   href="mailto:sylviah.rutto@gmail.com"
                   className="flex items-center gap-2 text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors"
@@ -464,17 +485,26 @@ export default function CVPage() {
           <div className="bg-[#121212] dark:bg-[#ececec] rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-[#c5a358]" />
             <h2 className="text-4xl md:text-6xl font-playfair font-bold text-white dark:text-[#050505] mb-8 leading-tight">
-              Ready to Build Your <span className="text-[#c5a358]">Digital Legacy?</span>
+              Bring your idea to life. I design, build, and  <span className="text-[#c5a358]">Launch it.</span>
             </h2>
             <p className="text-xl text-[#aaa] dark:text-[#444] mb-12 max-w-2xl mx-auto font-light">
-              I am currently accepting select new projects. If you're looking for an engineer who values precision and performance, let's talk.
+              I work on carefully selected projects focused on speed, scalability, and great user experience. Let’s turn your idea into a real, working product.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <a
-                href="mailto:sylviah.rutto@gmail.com"
-                className="px-12 py-5 bg-[#c5a358] text-white rounded-full font-bold text-xl hover:scale-105 transition-transform w-full sm:w-auto"
+                href="https://wa.me/254758668360"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-12 py-5 bg-[#c5a358] text-white rounded-full font-bold text-xl hover:scale-105 transition-transform w-full sm:w-auto text-center"
               >
-                Send an Inquiry
+                Start a Project on WhatsApp
+              </a>
+              <a
+                href="mailto:sylviah.rutto@gmail.com"
+                className="px-12 py-5 bg-transparent border border-[#c5a358] text-[#c5a358] rounded-full font-bold text-xl hover:bg-[#c5a358]/10 hover:scale-105 transition-transform w-full sm:w-auto flex items-center gap-2 justify-center"
+              >
+                <Mail className="w-6 h-6" />
+                Send an Email
               </a>
             </div>
           </div>
