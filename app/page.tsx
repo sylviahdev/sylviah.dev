@@ -34,24 +34,6 @@ export default function CVPage() {
     setMenuOpen(false);
   };
 
-  const downloadPDF = async () => {
-    if (typeof window !== "undefined") {
-      const html2pdf = (await import("html2pdf.js")).default;
-      const element = document.getElementById("cv-content");
-      if (element) {
-        html2pdf()
-          .from(element)
-          .set({
-            margin: 0.5,
-            filename: "Sylviah_Rutto_CV.pdf",
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-          })
-          .save();
-      }
-    }
-  };
-
   return (
     <main className="min-h-screen bg-[#fafaf8] dark:bg-[#0f0f0d]">
       {/* Navbar */}
@@ -78,14 +60,15 @@ export default function CVPage() {
             ))}
           </div>
 
-          <motion.button
+          <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={downloadPDF}
+            href="/Sylviah_Rutto_CV.pdf"
+            download
             className="hidden md:block px-6 py-2 bg-[#1a1a1a] dark:bg-[#fafaf8] text-[#fafaf8] dark:text-[#1a1a1a] rounded-full font-medium text-sm hover:shadow-lg transition-shadow"
           >
-            Get Resume
-          </motion.button>
+            Download CV
+          </motion.a>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -110,12 +93,14 @@ export default function CVPage() {
                 {item}
               </button>
             ))}
-            <button
-              onClick={downloadPDF}
-              className="w-full mt-2 px-4 py-2 bg-[#1a1a1a] dark:bg-[#fafaf8] text-[#fafaf8] dark:text-[#1a1a1a] rounded-full font-medium text-sm"
+            <motion.a
+              whileTap={{ scale: 0.98 }}
+              href="/Sylviah_Rutto_CV.pdf"
+              download
+              className="w-full mt-2 px-4 py-3 bg-[#c5a358] text-white rounded-full font-medium text-base shadow-sm"
             >
               Download CV
-            </button>
+            </motion.a>
           </motion.div>
         )}
       </nav>
@@ -164,7 +149,7 @@ export default function CVPage() {
               </h1>
 
               <p className="text-lg text-[#555] dark:text-[#ccc] mb-8 leading-relaxed">
-                I build beautiful, scalable web applications with React and Next.js. Passionate about crafting pixel-perfect interfaces and intelligent automation systems.
+                I build beautiful, scalable web applications with React, Next.js, and Python. Passionate about crafting pixel-perfect interfaces and intelligent automation systems.
               </p>
 
               <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start text-sm">
@@ -270,14 +255,14 @@ export default function CVPage() {
 
         {/* Projects */}
         <motion.section
-          id="work"
+          id="projects"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
-          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Case Studies</h2>
+          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Featured Work</h2>
 
           <motion.div
             variants={staggerContainer}
@@ -334,7 +319,7 @@ export default function CVPage() {
               >
                 {p.featured && (
                   <div className="inline-block px-3 py-1 bg-[#c5a358] text-white text-xs font-bold rounded-full mb-3 uppercase tracking-widest">
-                    Premium Case Study
+                    Featured Project
                   </div>
                 )}
 
