@@ -5,7 +5,7 @@ import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight, MessageCir
 import { motion, useScroll, useSpring, Variants } from "framer-motion";
 
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 30 }, // Increased y for more noticeable slide-up
+  hidden: { opacity: 0, y: 20 }, // Reduced y for better mobile stability
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }, // Smoother ease
 };
 
@@ -35,7 +35,7 @@ export default function CVPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fafaf8] dark:bg-[#0f0f0d]">
+    <main className="min-h-screen bg-[#fafaf8] dark:bg-[#0f0f0d] overflow-x-hidden">
       {/* Navbar */}
       <nav className="fixed top-0 w-full backdrop-blur-md bg-[#fafaf8]/80 dark:bg-[#0f0f0d]/80 border-b border-[#e5e0d9] dark:border-[#2a2a26] z-50">
         <div className="max-w-5xl mx-auto flex justify-between items-center px-6 py-4">
@@ -145,7 +145,7 @@ export default function CVPage() {
                 </p>
               </motion.div>
 
-              <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-[#1a1a1a] dark:text-[#fafaf8] leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-playfair font-bold mb-6 text-[#1a1a1a] dark:text-[#fafaf8] leading-tight">
                 Sylviah Rutto
               </h1>
 
@@ -166,7 +166,9 @@ export default function CVPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href="/Sylviah_Rutto_CV.pdf"
-                  download
+                  download="Sylviah_Rutto_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-4 border border-[#e2dfd7] dark:border-[#141414] text-[#1a1a1a] dark:text-[#fafaf8] rounded-full font-bold text-lg hover:bg-[#f3f1ed] dark:hover:bg-[#1f1f1b] transition-all"
                 >
                   Download CV
@@ -209,7 +211,7 @@ export default function CVPage() {
           id="summary"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }} // Increased amount for earlier trigger
+          viewport={{ once: true, amount: 0.1, margin: "-50px" }}
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
@@ -233,7 +235,7 @@ export default function CVPage() {
           id="skills"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1, margin: "-50px" }}
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
@@ -243,7 +245,7 @@ export default function CVPage() {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1, margin: "-50px" }}
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
           >
             {[
@@ -279,7 +281,7 @@ export default function CVPage() {
           id="projects"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1, margin: "-50px" }}
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
@@ -289,7 +291,7 @@ export default function CVPage() {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1, margin: "-50px" }}
             className="space-y-12 md:space-y-16" // Increased space between projects
           >
             {[
@@ -436,13 +438,13 @@ export default function CVPage() {
           id="education"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1, margin: "-50px" }}
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
           <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Education</h2>
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="space-y-8">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1, margin: "-50px" }} className="space-y-8">
             {[
               { school: "Moringa School", degree: "Software Development", year: "2019" },
               {
@@ -478,13 +480,13 @@ export default function CVPage() {
           id="contact"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-40 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
           <div className="bg-[#121212] dark:bg-[#ececec] rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-[#c5a358]" />
-            <h2 className="text-4xl md:text-6xl font-playfair font-bold text-white dark:text-[#050505] mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-playfair font-bold text-white dark:text-[#050505] mb-8 leading-tight">
               Bring your idea to life. I design, build, and  <span className="text-[#c5a358]">Launch it.</span>
             </h2>
             <p className="text-xl text-[#aaa] dark:text-[#444] mb-12 max-w-2xl mx-auto font-light">
