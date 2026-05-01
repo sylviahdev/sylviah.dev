@@ -84,7 +84,7 @@ export default function CVPage() {
             onClick={downloadPDF}
             className="hidden md:block px-6 py-2 bg-[#1a1a1a] dark:bg-[#fafaf8] text-[#fafaf8] dark:text-[#1a1a1a] rounded-full font-medium text-sm hover:shadow-lg transition-shadow"
           >
-            Download CV
+            Get Resume
           </motion.button>
 
           <button
@@ -270,14 +270,14 @@ export default function CVPage() {
 
         {/* Projects */}
         <motion.section
-          id="projects"
+          id="work"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
-          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Featured Work</h2>
+          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Case Studies</h2>
 
           <motion.div
             variants={staggerContainer}
@@ -333,8 +333,8 @@ export default function CVPage() {
                 }`}
               >
                 {p.featured && (
-                  <div className="inline-block px-3 py-1 bg-[#c5a358] text-white text-xs font-semibold rounded-full mb-3 uppercase tracking-widest">
-                    Featured Client Work
+                  <div className="inline-block px-3 py-1 bg-[#c5a358] text-white text-xs font-bold rounded-full mb-3 uppercase tracking-widest">
+                    Premium Case Study
                   </div>
                 )}
 
@@ -345,14 +345,14 @@ export default function CVPage() {
                     }`}>
                       {p.title}
                     </h3>
-                    <p className={`mb-5 leading-relaxed text-base font-light ${
+                    <p className={`mb-5 leading-relaxed text-lg font-light ${
                       p.featured ? "text-[#aaa] dark:text-[#444]" : "text-[#444] dark:text-[#aaa]"
                     }`}>
                       {p.desc}
                     </p>
 
                     {p.metrics && (
-                      <div className={`flex flex-wrap gap-2 mb-4 pb-4 border-b ${p.featured ? "border-[#fafaf9]/20 dark:border-[#121212]/20" : "border-[#e2dfd7] dark:border-[#141414]"}`}>
+                      <div className={`flex flex-wrap gap-3 mb-6 pb-6 border-b ${p.featured ? "border-[#fafaf9]/20 dark:border-[#121212]/20" : "border-[#e2dfd7] dark:border-[#141414]"}`}>
                         {p.metrics.map((metric) => (
                           <div
                             key={metric}
@@ -362,7 +362,7 @@ export default function CVPage() {
                                 : "bg-[#ececec] dark:bg-[#121212] text-[#121212] dark:text-[#ececec]"
                             }`}
                           >
-                            <span className="text-[#c5a358]">✓</span> {metric}
+                            <span className="text-[#c5a358] mr-1">✦</span> {metric}
                           </div>
                         ))}
                       </div>
@@ -465,6 +465,34 @@ export default function CVPage() {
               </motion.div>
             ))}
           </motion.div>
+        </motion.section>
+
+        {/* CTA Section */}
+        <motion.section
+          id="contact"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="max-w-5xl mx-auto px-6 py-24 md:py-40 border-t border-[#e2dfd7] dark:border-[#141414]"
+        >
+          <div className="bg-[#121212] dark:bg-[#ececec] rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#c5a358]" />
+            <h2 className="text-4xl md:text-6xl font-playfair font-bold text-white dark:text-[#050505] mb-8 leading-tight">
+              Ready to Build Your <span className="text-[#c5a358]">Digital Legacy?</span>
+            </h2>
+            <p className="text-xl text-[#aaa] dark:text-[#444] mb-12 max-w-2xl mx-auto font-light">
+              I am currently accepting select new projects. If you're looking for an engineer who values precision and performance, let's talk.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <a
+                href="mailto:sylviah.rutto@gmail.com"
+                className="px-12 py-5 bg-[#c5a358] text-white rounded-full font-bold text-xl hover:scale-105 transition-transform w-full sm:w-auto"
+              >
+                Send an Inquiry
+              </a>
+            </div>
+          </div>
         </motion.section>
 
         {/* Footer */}
