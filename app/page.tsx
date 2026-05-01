@@ -236,7 +236,7 @@ export default function CVPage() {
                 Frontend and Fullstack Developer specializing in building modern, responsive web applications using React, Next.js, and TypeScript. Experienced in backend development with Python, Django, and Flask.
               </p>
               <p className="text-xl font-sans font-light text-[#444] dark:text-[#aaa] leading-relaxed">
-                I'm passionate about building automation-driven systems and AI powered applications that solve meaningful, real-world problems.s.
+                I'm passionate about I design intelligent, automation-driven systems and AI-powered applications that solve meaningful, real-world problems.s.
               </p>
             </div>
           </div>
