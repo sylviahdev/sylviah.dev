@@ -149,7 +149,7 @@ export default function CVPage() {
               </h1>
 
               <p className="text-lg text-[#555] dark:text-[#ccc] mb-8 leading-relaxed">
-                I build beautiful, scalable web applications with React, Next.js, and Python. Passionate about crafting pixel-perfect interfaces and intelligent automation systems.
+                I build scalable web applications using React, Next.js, and Python, focusing on performance, clean architecture, and user-centered design. I enjoy turning complex ideas into fast, reliable, and visually refined digital products.
               </p>
 
               <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start text-sm">
