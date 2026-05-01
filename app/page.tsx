@@ -53,7 +53,7 @@ export default function CVPage() {
               <button
                 key={item}
                 onClick={() => scrollTo(item.toLowerCase())}
-                className="relative font-medium text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#1a1a1a] dark:after:bg-[#fafaf8] after:w-0 hover:after:w-full after:transition-all after:duration-300"
+                className="relative font-sans font-medium tracking-wide text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#1a1a1a] dark:after:bg-[#fafaf8] after:w-0 hover:after:w-full after:transition-all after:duration-300"
               >
                 {item}
               </button>
@@ -140,16 +140,16 @@ export default function CVPage() {
               className="text-center md:text-left flex-1"
             >
               <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}>
-                <p className="text-sm font-semibold tracking-widest uppercase text-[#666] dark:text-[#999] mb-3">
+                <p className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-[#666] dark:text-[#999] mb-3">
                   Frontend & Fullstack Developer
                 </p>
               </motion.div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-playfair font-bold mb-6 text-[#1a1a1a] dark:text-[#fafaf8] leading-tight">
+              <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-8 text-[#1a1a1a] dark:text-[#fafaf8] leading-[1.1] tracking-tight">
                 Sylviah Rutto
               </h1>
 
-              <p className="text-lg text-[#555] dark:text-[#ccc] mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl font-sans font-light text-[#555] dark:text-[#ccc] mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
                 I build scalable web applications using React, Next.js, and Python, focusing on performance, clean architecture, and user-centered design. I enjoy turning complex ideas into fast, reliable, and visually refined digital products.
               </p>
 
@@ -158,7 +158,7 @@ export default function CVPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollTo('contact')}
-                  className="px-8 py-4 bg-[#c5a358] text-white rounded-full font-bold text-lg shadow-lg hover:shadow-[#c5a358]/20 transition-all"
+                  className="px-8 py-4 bg-[#c5a358] text-white rounded-full font-sans font-bold text-lg shadow-lg hover:shadow-[#c5a358]/20 transition-all"
                 >
                   Let's Work Together
                 </motion.button>
@@ -169,38 +169,50 @@ export default function CVPage() {
                   download="Sylviah_Rutto_CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 border border-[#e2dfd7] dark:border-[#141414] text-[#1a1a1a] dark:text-[#fafaf8] rounded-full font-bold text-lg hover:bg-[#f3f1ed] dark:hover:bg-[#1f1f1b] transition-all"
+                  className="px-8 py-4 border border-[#e2dfd7] dark:border-[#141414] text-[#1a1a1a] dark:text-[#fafaf8] rounded-full font-sans font-bold text-lg hover:bg-[#f3f1ed] dark:hover:bg-[#1f1f1b] transition-all"
                 >
                   Download CV
                 </motion.a>
               </div>
 
-              <div className="flex flex-wrap gap-6 md:gap-10 items-center md:items-start text-sm opacity-80">
-                <a
+              <div className="flex flex-wrap gap-4 md:gap-6 items-center justify-center md:justify-start">
+                <motion.a
                   href="mailto:sylviah.rutto@gmail.com"
-                  className="flex items-center gap-2 text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#e2dfd7] dark:border-[#2a2a26] bg-[#f5f5f3] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#fafaf8]
+                             font-sans font-medium text-sm hover:bg-[#c5a358]/10 hover:border-[#c5a358] hover:text-[#c5a358]
+                             focus:outline-none focus:ring-2 focus:ring-[#c5a358] focus:ring-offset-2 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-5 h-5" />
                   sylviah.rutto@gmail.com
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="https://github.com/sylviahdev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#e2dfd7] dark:border-[#2a2a26] bg-[#f5f5f3] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#fafaf8]
+                             font-sans font-medium text-sm hover:bg-[#c5a358]/10 hover:border-[#c5a358] hover:text-[#c5a358]
+                             focus:outline-none focus:ring-2 focus:ring-[#c5a358] focus:ring-offset-2 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Github className="w-4 h-4" />
+                  <Github className="w-5 h-5" />
                   GitHub
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="https://www.linkedin.com/in/sylviah-rutto-a7a17378/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#e2dfd7] dark:border-[#2a2a26] bg-[#f5f5f3] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#fafaf8]
+                             font-sans font-medium text-sm hover:bg-[#c5a358]/10 hover:border-[#c5a358] hover:text-[#c5a358]
+                             focus:outline-none focus:ring-2 focus:ring-[#c5a358] focus:ring-offset-2 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <Linkedin className="w-5 h-5" />
                   LinkedIn
-                </a>
+                </motion.a>
               </div>
             </motion.div>
           </div>
@@ -217,14 +229,14 @@ export default function CVPage() {
         >
           <div className="grid md:grid-cols-3 gap-12 md:gap-16"> {/* Increased gap */}
             <div className="md:col-span-1">
-              <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-4 md:mb-0">About</h2>
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold tracking-tight text-[#121212] dark:text-[#ececec] mb-4 md:mb-0">About</h2>
             </div>
             <div className="md:col-span-2 space-y-6"> {/* Increased space between paragraphs */}
-              <p className="text-lg text-[#444] dark:text-[#aaa] leading-relaxed font-light">
+              <p className="text-xl font-sans font-light text-[#444] dark:text-[#aaa] leading-relaxed">
                 Frontend and Fullstack Developer specializing in building modern, responsive web applications using React, Next.js, and TypeScript. Experienced in backend development with Python, Django, and Flask.
               </p>
-              <p className="text-lg text-[#444] dark:text-[#aaa] leading-relaxed font-light">
-                I'm passionate about creating intelligent, automation-driven systems and AI-powered applications that solve real problems.
+              <p className="text-xl font-sans font-light text-[#444] dark:text-[#aaa] leading-relaxed">
+                I'm passionate about building automation-driven systems and AI powered applications that solve meaningful, real-world problems.s.
               </p>
             </div>
           </div>
@@ -239,7 +251,7 @@ export default function CVPage() {
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
-          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Skills</h2>
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold tracking-tight text-[#121212] dark:text-[#ececec] mb-16">Skills</h2>
 
           <motion.div
             variants={staggerContainer}
@@ -268,7 +280,7 @@ export default function CVPage() {
                 key={skill}
                 variants={fadeInUp}
                 whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }} // More pronounced hover effect
-                className="px-5 py-3 bg-[#f5f5f3] dark:bg-[#0c0c0c] rounded-xl border border-[#e2dfd7] dark:border-[#141414] text-center font-medium text-base text-[#121212] dark:text-[#ececec] hover:border-[#c5a358] dark:hover:border-[#c5a358] transition-all duration-200 cursor-pointer"
+                className="px-5 py-3 bg-[#f5f5f3] dark:bg-[#0c0c0c] rounded-xl border border-[#e2dfd7] dark:border-[#141414] text-center font-sans font-medium text-base text-[#121212] dark:text-[#ececec] hover:border-[#c5a358] dark:hover:border-[#c5a358] transition-all duration-200 cursor-pointer"
               >
                 {skill}
               </motion.div>
@@ -285,7 +297,7 @@ export default function CVPage() {
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
-          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Featured Work</h2>
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold tracking-tight text-[#121212] dark:text-[#ececec] mb-16">Featured Work</h2>
 
           <motion.div
             variants={staggerContainer}
@@ -297,11 +309,11 @@ export default function CVPage() {
             {[
               {
                 title: "M-Unit Media Website",
-                desc: "Full-stack videography studio platform architected with React frontend and Flask backend. Features premium booking system with real-time availability, dynamic package management, and integrated payment processing. Implementing secure M-Pesa transaction handling via Daraja API with idempotent payment handlers, webhook verification, and callback validation. Dark luxury design optimized for conversion with WhatsApp and multi-channel contact integration. Production-grade payment pipeline ensuring transaction reliability and PCI compliance.",
+                desc: "Full-stack videography studio platform architected with React frontend and Flask backend. Features premium booking system with real-time availability, dynamic package management, and integrated payment processing. Implementing secure M-Pesa transaction handling via Daraja API with idempotent payment handlers, webhook verification, and callback validation. Modern luxury design optimized for conversion with WhatsApp and multi-channel contact integration. Production-grade payment pipeline ensuring transaction reliability and PCI compliance.",
                 tech: ["React", "Flask", "TypeScript", "Tailwind CSS", "Daraja API", "M-Pesa"],
                 live: "https://munitmediawebsite-msxp.vercel.app/",
                 featured: true,
-                metrics: ["Secure Payment Processing", "Idempotent Transaction Handling", "Full-Stack Architecture"],
+                
               },
               {
                 title: "Task Tracker",
@@ -336,7 +348,7 @@ export default function CVPage() {
                 whileHover={{ y: -5, boxShadow: p.featured ? "0 20px 40px rgba(0,0,0,0.2)" : "0 15px 30px rgba(0,0,0,0.05)" }}
                 className={`group p-6 sm:p-8 md:p-10 rounded-2xl border transition-all duration-300 ${
                   p.featured
-                    ? "bg-gradient-to-br from-[#121212] to-[#000000] dark:from-[#ececec] dark:to-[#ffffff] border-[#121212] dark:border-[#ececec] shadow-xl"
+                    ? "bg-white dark:bg-[#1a1a1a] border-[#c5a358] shadow-xl"
                     : "bg-[#f5f5f3] dark:bg-[#0c0c0c] border-[#e2dfd7] dark:border-[#141414] hover:border-[#c5a358] dark:hover:border-[#c5a358]"
                 }`}
               >
@@ -348,27 +360,19 @@ export default function CVPage() {
 
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex-1">
-                    <h3 className={`text-2xl font-semibold mb-3 tracking-tight ${
-                      p.featured ? "text-[#fafaf9] dark:text-[#050505]" : "text-[#121212] dark:text-[#ececec]"
-                    }`}>
+                    <h3 className="text-2xl md:text-3xl font-playfair font-semibold mb-3 tracking-tight text-[#121212] dark:text-[#ececec]">
                       {p.title}
                     </h3>
-                    <p className={`mb-5 leading-relaxed text-base sm:text-lg font-light ${
-                      p.featured ? "text-[#aaa] dark:text-[#444]" : "text-[#444] dark:text-[#aaa]"
-                    }`}>
+                    <p className="mb-6 leading-relaxed text-base sm:text-lg font-sans font-light text-[#444] dark:text-[#aaa]">
                       {p.desc}
                     </p>
 
                     {p.metrics && (
-                      <div className={`flex flex-wrap gap-3 mb-6 pb-6 border-b ${p.featured ? "border-[#fafaf9]/20 dark:border-[#121212]/20" : "border-[#e2dfd7] dark:border-[#141414]"}`}>
+                      <div className={`flex flex-wrap gap-3 mb-6 pb-6 border-b ${p.featured ? "border-[#c5a358]/20" : "border-[#e2dfd7] dark:border-[#141414]"}`}>
                         {p.metrics.map((metric) => (
                           <div
                             key={metric}
-                            className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg ${
-                              p.featured
-                                ? "bg-[#fafaf9]/10 dark:bg-[#121212]/10 text-[#fafaf9] dark:text-[#121212]"
-                                : "bg-[#ececec] dark:bg-[#121212] text-[#121212] dark:text-[#ececec]"
-                            }`}
+                            className="px-3.5 py-1.5 text-xs font-sans font-semibold rounded-lg bg-[#ececec] dark:bg-[#121212] text-[#121212] dark:text-[#ececec]"
                           >
                             <span className="text-[#c5a358] mr-1">✦</span> {metric}
                           </div>
@@ -380,33 +384,25 @@ export default function CVPage() {
                       {p.tech.map((t) => (
                         <span
                           key={t}
-                          className={`px-3.5 py-1.5 text-xs font-medium rounded-full ${ // Increased padding
-                            p.featured
-                              ? "bg-[#fafaf9]/20 dark:bg-[#121212]/20 text-[#fafaf9] dark:text-[#121212]"
-                              : "bg-[#e2dfd7] dark:border-[#141414] text-[#121212] dark:text-[#ececec] border"
-                          }`}
+                          className="px-3.5 py-1.5 text-xs font-sans font-medium rounded-full bg-[#e2dfd7] dark:border-[#141414] text-[#121212] dark:text-[#ececec] border"
                         >
                           {t}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className={p.featured ? "text-[#fafaf9] dark:text-[#121212]" : "text-[#121212] dark:text-[#ececec]"}>
+                  <div className="text-[#121212] dark:text-[#ececec]">
                     <ArrowUpRight className="w-6 h-6 hover:text-[#c5a358] transition-colors" />
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-x-6 gap-y-4 mt-5 pt-5 border-t" style={p.featured ? { borderColor: "rgba(250,250,248,0.2)" } : {}}>
+                <div className={`flex flex-wrap gap-x-6 gap-y-4 mt-5 pt-5 border-t ${p.featured ? "border-[#c5a358]/20" : "border-[#e2dfd7] dark:border-[#141414]"}`}>
                   {p.live && (
                     <motion.a
                       href={p.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`text-base font-medium transition-colors flex items-center gap-2 group ${ // Larger text, increased gap
-                        p.featured
-                          ? "text-[#fafaf9] dark:text-[#121212] hover:text-[#c5a358]"
-                          : "text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
-                      }`}
+                      className="text-base font-sans font-medium transition-colors flex items-center gap-2 group text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
                       whileHover={{ x: 3 }}
                     >
                       Live Demo <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" /> {/* Larger icon, scale on hover */}
@@ -417,11 +413,7 @@ export default function CVPage() {
                       href={p.code}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`text-base font-medium transition-colors flex items-center gap-2 group ${ // Larger text, increased gap
-                        p.featured
-                          ? "text-[#fafaf9] dark:text-[#121212] hover:text-[#c5a358]"
-                          : "text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
-                      }`}
+                      className="text-base font-sans font-medium transition-colors flex items-center gap-2 group text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
                       whileHover={{ x: 3 }}
                     >
                       View Code <Github className="w-4 h-4 group-hover:scale-110 transition-transform" /> {/* Larger icon, scale on hover */}
@@ -442,7 +434,7 @@ export default function CVPage() {
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
-          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Education</h2>
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold tracking-tight text-[#121212] dark:text-[#ececec] mb-16">Education</h2>
 
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1, margin: "-50px" }} className="space-y-8">
             {[
@@ -466,9 +458,9 @@ export default function CVPage() {
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-[#c5a358] mt-2.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-lg text-[#121212] dark:text-[#ececec] mb-1 tracking-tight">{edu.school}</h3>
-                  <p className="text-base text-[#444] dark:text-[#aaa] mb-0.5 font-light">{edu.degree}</p>
-                  <p className="text-sm text-[#999] dark:text-[#666]">{edu.year}</p>
+                  <h3 className="font-playfair font-semibold text-xl text-[#121212] dark:text-[#ececec] mb-1 tracking-tight">{edu.school}</h3>
+                  <p className="text-base font-sans font-light text-[#444] dark:text-[#aaa] mb-0.5">{edu.degree}</p>
+                  <p className="text-sm font-sans text-[#999] dark:text-[#666]">{edu.year}</p>
                 </div>
               </motion.div>
             ))}
@@ -486,10 +478,10 @@ export default function CVPage() {
         >
           <div className="bg-[#121212] dark:bg-[#ececec] rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-[#c5a358]" />
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-playfair font-bold text-white dark:text-[#050505] mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-playfair font-bold text-white dark:text-[#050505] mb-8 leading-[1.1] tracking-tight">
               Bring your idea to life. I design, build, and  <span className="text-[#c5a358]">Launch it.</span>
             </h2>
-            <p className="text-xl text-[#aaa] dark:text-[#444] mb-12 max-w-2xl mx-auto font-light">
+            <p className="text-xl font-sans font-light text-[#aaa] dark:text-[#444] mb-12 max-w-2xl mx-auto">
               I work on carefully selected projects focused on speed, scalability, and great user experience. Let’s turn your idea into a real, working product.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -497,13 +489,13 @@ export default function CVPage() {
                 href="https://wa.me/254758668360"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-12 py-5 bg-[#c5a358] text-white rounded-full font-bold text-xl hover:scale-105 transition-transform w-full sm:w-auto text-center"
+                className="px-12 py-5 bg-[#c5a358] text-white rounded-full font-sans font-bold text-xl hover:scale-105 transition-transform w-full sm:w-auto text-center shadow-lg hover:shadow-[#c5a358]/20"
               >
                 Start a Project on WhatsApp
               </a>
               <a
                 href="mailto:sylviah.rutto@gmail.com"
-                className="px-12 py-5 bg-transparent border border-[#c5a358] text-[#c5a358] rounded-full font-bold text-xl hover:bg-[#c5a358]/10 hover:scale-105 transition-transform w-full sm:w-auto flex items-center gap-2 justify-center"
+                className="px-12 py-5 bg-transparent border border-[#c5a358] text-[#c5a358] rounded-full font-sans font-bold text-xl hover:bg-[#c5a358]/10 hover:scale-105 transition-transform w-full sm:w-auto flex items-center gap-2 justify-center"
               >
                 <Mail className="w-6 h-6" />
                 Send an Email
