@@ -49,7 +49,7 @@ export default function CVPage() {
           </motion.div>
 
           <div className="hidden md:flex gap-8 text-sm">
-            {["Summary", "Skills", "Projects", "Education"].map((item) => (
+            {["Summary", "Skills", "Case Studies", "Education"].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollTo(item.toLowerCase())}
@@ -83,7 +83,7 @@ export default function CVPage() {
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden bg-[#fafaf8] dark:bg-[#0f0f0d] border-t border-[#e5e0d9] dark:border-[#2a2a26] px-6 py-4 space-y-3"
           >
-            {["Summary", "Skills", "Projects", "Education"].map((item) => (
+            {["Summary", "Skills", "Case Studies", "Education"].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollTo(item.toLowerCase())}
@@ -333,27 +333,27 @@ export default function CVPage() {
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                whileHover={{ y: -8, boxShadow: p.featured ? "0 20px 40px rgba(0,0,0,0.3)" : "0 15px 30px rgba(0,0,0,0.1)" }} // More pronounced hover for all, extra for featured
-                className={`group p-8 md:p-10 rounded-2xl border transition-all duration-300 ${
+                whileHover={{ y: -5, boxShadow: p.featured ? "0 20px 40px rgba(0,0,0,0.2)" : "0 15px 30px rgba(0,0,0,0.05)" }}
+                className={`group p-6 sm:p-8 md:p-10 rounded-2xl border transition-all duration-300 ${
                   p.featured
                     ? "bg-gradient-to-br from-[#121212] to-[#000000] dark:from-[#ececec] dark:to-[#ffffff] border-[#121212] dark:border-[#ececec] shadow-xl"
                     : "bg-[#f5f5f3] dark:bg-[#0c0c0c] border-[#e2dfd7] dark:border-[#141414] hover:border-[#c5a358] dark:hover:border-[#c5a358]"
                 }`}
               >
                 {p.featured && (
-                  <div className="inline-block px-3 py-1 bg-[#c5a358] text-white text-xs font-bold rounded-full mb-3 uppercase tracking-widest">
+                  <div className="inline-block px-3 py-1 bg-[#c5a358] text-white text-[10px] sm:text-xs font-bold rounded-full mb-4 uppercase tracking-widest">
                     Featured Project
                   </div>
                 )}
 
-                <div className="flex justify-between items-start gap-6">
+                <div className="flex justify-between items-start gap-4">
                   <div className="flex-1">
                     <h3 className={`text-2xl font-semibold mb-3 tracking-tight ${
                       p.featured ? "text-[#fafaf9] dark:text-[#050505]" : "text-[#121212] dark:text-[#ececec]"
                     }`}>
                       {p.title}
                     </h3>
-                    <p className={`mb-5 leading-relaxed text-lg font-light ${
+                    <p className={`mb-5 leading-relaxed text-base sm:text-lg font-light ${
                       p.featured ? "text-[#aaa] dark:text-[#444]" : "text-[#444] dark:text-[#aaa]"
                     }`}>
                       {p.desc}
@@ -391,12 +391,12 @@ export default function CVPage() {
                       ))}
                     </div>
                   </div>
-                  <motion.div whileHover={{ x: 8, y: -8 }} className={p.featured ? "text-[#fafaf9] dark:text-[#121212]" : "text-[#121212] dark:text-[#ececec]"}>
+                  <div className={p.featured ? "text-[#fafaf9] dark:text-[#121212]" : "text-[#121212] dark:text-[#ececec]"}>
                     <ArrowUpRight className="w-6 h-6 hover:text-[#c5a358] transition-colors" />
-                  </motion.div>
+                  </div>
                 </div>
 
-                <div className="flex gap-6 mt-5 pt-5 border-t" style={p.featured ? { borderColor: "rgba(250,250,248,0.2)" } : {}}> {/* Increased gap, mt, pt */}
+                <div className="flex flex-wrap gap-x-6 gap-y-4 mt-5 pt-5 border-t" style={p.featured ? { borderColor: "rgba(250,250,248,0.2)" } : {}}>
                   {p.live && (
                     <motion.a
                       href={p.live}
