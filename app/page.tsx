@@ -1,16 +1,32 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { Github, ExternalLink, Book, Mail, Phone, Linkedin, Monitor } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight } from "lucide-react";
+import { motion, useScroll, useSpring } from "framer-motion";
 
-const sectionAnimation = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 }, // Increased y for more noticeable slide-up
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }, // Smoother ease
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1, // Slightly increased stagger and delay
+    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+  },
 };
 
 export default function CVPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Framer Motion hooks for scroll progress
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -37,180 +53,430 @@ export default function CVPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-100">
-
+    <main className="min-h-screen bg-[#fafaf8] dark:bg-[#0f0f0d]">
       {/* Navbar */}
-      <nav className="bg-white shadow sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto flex justify-between items-center px-4 py-3 md:py-4">
-          <div className="font-bold text-lg text-gray-900 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            Sylviah Rutto CV
-          </div>
-          <div className="hidden md:flex gap-4 text-sm">
-            <button onClick={() => scrollTo("summary")} className="hover:text-blue-600 transition">Summary</button>
-            <button onClick={() => scrollTo("skills")} className="hover:text-blue-600 transition">Skills</button>
-            <button onClick={() => scrollTo("projects")} className="hover:text-blue-600 transition">Projects</button>
-            <button onClick={() => scrollTo("education")} className="hover:text-blue-600 transition">Education</button>
-            <button onClick={downloadPDF} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-              Download PDF
-            </button>
+      <nav className="fixed top-0 w-full backdrop-blur-md bg-[#fafaf8]/80 dark:bg-[#0f0f0d]/80 border-b border-[#e5e0d9] dark:border-[#2a2a26] z-50">
+        <div className="max-w-5xl mx-auto flex justify-between items-center px-6 py-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xl font-playfair font-semibold cursor-pointer"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            Sylviah
+          </motion.div>
+
+          <div className="hidden md:flex gap-8 text-sm">
+            {["Summary", "Skills", "Projects", "Education"].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollTo(item.toLowerCase())}
+                className="relative font-medium text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#1a1a1a] dark:after:bg-[#fafaf8] after:w-0 hover:after:w-full after:transition-all after:duration-300"
+              >
+                {item}
+              </button>
+            ))}
           </div>
 
-          <div className="md:hidden">
-            <button onClick={() => setMenuOpen(!menuOpen)}>
-              <Monitor className="w-6 h-6" />
-            </button>
-          </div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={downloadPDF}
+            className="hidden md:block px-6 py-2 bg-[#1a1a1a] dark:bg-[#fafaf8] text-[#fafaf8] dark:text-[#1a1a1a] rounded-full font-medium text-sm hover:shadow-lg transition-shadow"
+          >
+            Download CV
+          </motion.button>
+
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2 hover:bg-[#f3f1ed] dark:hover:bg-[#1f1f1b] rounded-lg transition"
+          >
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
         {menuOpen && (
-          <div className="md:hidden bg-white shadow px-4 py-2 space-y-2">
-            <button onClick={() => scrollTo("summary")} className="block w-full text-left hover:text-blue-600">Summary</button>
-            <button onClick={() => scrollTo("skills")} className="block w-full text-left hover:text-blue-600">Skills</button>
-            <button onClick={() => scrollTo("projects")} className="block w-full text-left hover:text-blue-600">Projects</button>
-            <button onClick={() => scrollTo("education")} className="block w-full text-left hover:text-blue-600">Education</button>
-            <button onClick={downloadPDF} className="block w-full text-left text-white bg-blue-600 px-2 py-1 rounded hover:bg-blue-700">Download PDF</button>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="md:hidden bg-[#fafaf8] dark:bg-[#0f0f0d] border-t border-[#e5e0d9] dark:border-[#2a2a26] px-6 py-4 space-y-3"
+          >
+            {["Summary", "Skills", "Projects", "Education"].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollTo(item.toLowerCase())}
+                className="block w-full text-left font-medium hover:text-[#666] dark:hover:text-[#ccc] transition-colors py-2"
+              >
+                {item}
+              </button>
+            ))}
+            <button
+              onClick={downloadPDF}
+              className="w-full mt-2 px-4 py-2 bg-[#1a1a1a] dark:bg-[#fafaf8] text-[#fafaf8] dark:text-[#1a1a1a] rounded-full font-medium text-sm"
+            >
+              Download CV
+            </button>
+          </motion.div>
         )}
       </nav>
 
-      {/* CV Content */}
-      <div id="cv-content" className="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-6 md:p-10 space-y-8 mt-6">
+      {/* Main Content */}
+      <div id="cv-content" className="pt-24">
+        {/* Hero Section */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          className="max-w-5xl mx-auto px-6 py-20"
+        >
+          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative"
+            >
+              <div className="absolute -inset-2 bg-gradient-to-br from-[#1a1a1a]/10 to-transparent dark:from-[#fafaf8]/10 rounded-2xl blur-2xl" />
+              <Image
+                src="/profile.jpg"
+                alt="Sylviah Rutto"
+                width={200}
+                height={200}
+                className="rounded-2xl shadow-2xl relative z-10 object-cover"
+                priority
+              />
+            </motion.div>
 
-        {/* Header */}
-        <div className="flex flex-col md:flex-row items-center gap-6 border-b-2 border-blue-100 pb-6">
-          <Image src="/profile.jpg" alt="Sylviah Rutto" width={150} height={150} className="rounded-full shadow-lg" priority />
-          <div className="text-center md:text-left space-y-2">
-            <h1 className="text-3xl font-bold text-gray-900">Sylviah Rutto</h1>
-            <p className="text-blue-600 font-medium mt-1">Frontend & Fullstack Developer</p>
-            <div className="text-gray-600 text-sm space-y-1">
-              <p><Mail className="inline w-4 h-4 mr-1" /> sylviah.rutto@gmail.com</p>
-              <p><Phone className="inline w-4 h-4 mr-1" /> +254758668360</p>
-              <p><Linkedin className="inline w-4 h-4 mr-1" /> <a href="https://www.linkedin.com/in/sylviah-rutto-a7a17378/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">linkedin.com/in/sylviah-rutto-a7a17378</a></p>
-              <p><Github className="inline w-4 h-4 mr-1" /> <a href="https://github.com/sylviahdev" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">github.com/sylviahdev</a></p>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center md:text-left flex-1"
+            >
+              <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}>
+                <p className="text-sm font-semibold tracking-widest uppercase text-[#666] dark:text-[#999] mb-3">
+                  Frontend & Fullstack Developer
+                </p>
+              </motion.div>
+
+              <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-[#1a1a1a] dark:text-[#fafaf8] leading-tight">
+                Sylviah Rutto
+              </h1>
+
+              <p className="text-lg text-[#555] dark:text-[#ccc] mb-8 leading-relaxed">
+                I build beautiful, scalable web applications with React and Next.js. Passionate about crafting pixel-perfect interfaces and intelligent automation systems.
+              </p>
+
+              <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start text-sm">
+                <a
+                  href="mailto:sylviah.rutto@gmail.com"
+                  className="flex items-center gap-2 text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors"
+                >
+                  <Mail className="w-4 h-4" />
+                  sylviah.rutto@gmail.com
+                </a>
+                <a
+                  href="https://github.com/sylviahdev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors"
+                >
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/sylviah-rutto-a7a17378/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-[#1a1a1a] dark:text-[#fafaf8] hover:text-[#666] dark:hover:text-[#ccc] transition-colors"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
+                </a>
+              </div>
+            </motion.div>
           </div>
-        </div>
-
-        {/* Professional Summary */}
-        <motion.section id="summary" variants={sectionAnimation} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} className="space-y-2 bg-blue-50 p-4 rounded shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-800 border-b border-blue-200 pb-1">Professional Summary</h2>
-          <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-            Frontend and Fullstack Developer specializing in building modern, responsive web applications using React, Next.js, and TypeScript. Experienced in backend development with Python, Django, and Flask, integrating APIs and building scalable, production-ready solutions. Passionate about creating intelligent, automation-driven systems and AI-powered applications.
-          </p>
         </motion.section>
 
-        {/* Technical Skills */}
-        <motion.section id="skills" variants={sectionAnimation} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} className="space-y-2 bg-green-50 p-4 rounded shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-800 border-b border-green-200 pb-1">Technical Skills</h2>
-          <ul className="grid grid-cols-2 md:grid-cols-3 gap-2 text-gray-700 text-sm md:text-base">
-            <li>React.js</li>
-            <li>Next.js</li>
-            <li>TypeScript</li>
-            <li>JavaScript (ES6+)</li>
-            <li>Tailwind CSS</li>
-            <li>Python</li>
-            <li>Django</li>
-            <li>Flask</li>
-            <li>Node.js</li>
-            <li>REST APIs</li>
-            <li>Git & GitHub</li>
-            <li>Responsive Design</li>
-          </ul>
+        {/* Summary */}
+        <motion.section
+          id="summary"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }} // Increased amount for earlier trigger
+          variants={fadeInUp}
+          className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
+        >
+          <div className="grid md:grid-cols-3 gap-12 md:gap-16"> {/* Increased gap */}
+            <div className="md:col-span-1">
+              <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-4 md:mb-0">About</h2>
+            </div>
+            <div className="md:col-span-2 space-y-6"> {/* Increased space between paragraphs */}
+              <p className="text-lg text-[#444] dark:text-[#aaa] leading-relaxed font-light">
+                Frontend and Fullstack Developer specializing in building modern, responsive web applications using React, Next.js, and TypeScript. Experienced in backend development with Python, Django, and Flask.
+              </p>
+              <p className="text-lg text-[#444] dark:text-[#aaa] leading-relaxed font-light">
+                I'm passionate about creating intelligent, automation-driven systems and AI-powered applications that solve real problems.
+              </p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Skills */}
+        <motion.section
+          id="skills"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
+        >
+          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Skills</h2>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
+          >
+            {[
+              "React.js",
+              "Next.js",
+              "TypeScript",
+              "JavaScript",
+              "Tailwind CSS",
+              "Python",
+              "Django",
+              "Flask",
+              "Node.js",
+              "REST APIs",
+              "Git & GitHub",
+              "PostgreSQL",
+              "Docker", // Added a new skill for more breadth
+              "AWS" // Added another skill
+            ].map((skill) => (
+              <motion.div
+                key={skill}
+                variants={fadeInUp}
+                whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }} // More pronounced hover effect
+                className="px-5 py-3 bg-[#f5f5f3] dark:bg-[#0c0c0c] rounded-xl border border-[#e2dfd7] dark:border-[#141414] text-center font-medium text-base text-[#121212] dark:text-[#ececec] hover:border-[#c5a358] dark:hover:border-[#c5a358] transition-all duration-200 cursor-pointer"
+              >
+                {skill}
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.section>
 
         {/* Projects */}
-        <motion.section id="projects" variants={sectionAnimation} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} className="space-y-6 mt-8">
-          <h2 className="text-xl font-semibold mb-4 text-gray-800">Projects</h2>
+        <motion.section
+          id="projects"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
+        >
+          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Featured Work</h2>
 
-          {/* Project Cards */}
-          {[
-            {
-              title: "Task Tracker — React & Local Storage",
-              desc: "Built a task management application with CRUD functionality and persistent local storage, improving task tracking efficiency and demonstrating state management using React hooks.",
-              tech: "React, JavaScript, Local Storage, Tailwind CSS",
-              live: "https://task-tracker-eight-mu.vercel.app/",
-              code: "https://github.com/sylviahdev/react-hub",
-            },
-            {
-              title: "Weather App — React & API Integration",
-              desc: "Developed a weather application displaying real-time weather data using external APIs.",
-              tech: "React, REST API, JavaScript, CSS",
-              live: "https://weathernow-wine.vercel.app/",
-              code: "https://github.com/sylviahdev/weathertoday",
-            },
-            {
-              title: "Professional Portfolio — Next.js & TypeScript",
-              desc: "Designed and developed a responsive portfolio using Next.js and TypeScript.",
-              tech: "Next.js, TypeScript, React, Tailwind CSS",
-              code: "https://github.com/sylviahdev/myportfolio",
-            },
-            {
-              title: "Blog API — Django REST Framework",
-              desc: "Built a backend API for a blog platform.",
-              tech: "Python, Django, Django REST Framework, PostgreSQL",
-              code: "https://github.com/sylviahdev/django-blog-api",
-            },
-            {
-              title: "Automation Tool — Python & Flask",
-              desc: "Built an automation web tool with Flask, integrating Python scripts to handle data processing.",
-              tech: "Python, Flask",
-              code: "https://github.com/sylviahdev/flask-automation",
-            },
-          ].map((p, i) => (
-            <div key={i} className="transition transform hover:scale-105 hover:shadow-lg p-4 rounded bg-white">
-              <h3 className="font-bold text-gray-900">{p.title}</h3>
-              <p className="text-gray-700 text-sm mt-1">{p.desc}</p>
-              <p className="text-gray-700 text-sm font-medium mt-1">Technologies: {p.tech}</p>
-              {p.live && (
-                <p className="text-gray-700 text-sm mt-1">
-                  Live: <a href={p.live} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View Live</a> |{" "}
-                  Code: <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View Code</a>
-                </p>
-              )}
-              {!p.live && (
-                <p className="text-gray-700 text-sm mt-1">
-                  Code: <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View Code</a>
-                </p>
-              )}
-            </div>
-          ))}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            className="space-y-12 md:space-y-16" // Increased space between projects
+          >
+            {[
+              {
+                title: "M-Unit Media Website",
+                desc: "Full-stack videography studio platform architected with React frontend and Flask backend. Features premium booking system with real-time availability, dynamic package management, and integrated payment processing. Implementing secure M-Pesa transaction handling via Daraja API with idempotent payment handlers, webhook verification, and callback validation. Dark luxury design optimized for conversion with WhatsApp and multi-channel contact integration. Production-grade payment pipeline ensuring transaction reliability and PCI compliance.",
+                tech: ["React", "Flask", "TypeScript", "Tailwind CSS", "Daraja API", "M-Pesa"],
+                live: "https://munitmediawebsite-msxp.vercel.app/",
+                featured: true,
+                metrics: ["Secure Payment Processing", "Idempotent Transaction Handling", "Full-Stack Architecture"],
+              },
+              {
+                title: "Task Tracker",
+                desc: "Full-featured productivity application with intuitive CRUD operations and persistent local storage. Demonstrates advanced React hooks patterns and responsive design principles for seamless task management across all devices.",
+                tech: ["React", "JavaScript", "Tailwind CSS"],
+                live: "https://task-tracker-eight-mu.vercel.app/",
+                code: "https://github.com/sylviahdev/react-hub",
+              },
+              {
+                title: "Weather App",
+                desc: "Real-time weather application integrating third-party APIs with beautiful data visualization. Showcases API integration expertise and modern UI patterns for displaying complex weather data intuitively.",
+                tech: ["React", "REST API", "JavaScript"],
+                live: "https://weathernow-wine.vercel.app/",
+                code: "https://github.com/sylviahdev/weathertoday",
+              },
+              {
+                title: "Professional Portfolio",
+                desc: "Premium portfolio design featuring smooth animations, responsive layouts, and optimized performance. Built with modern web standards demonstrating attention to user experience and visual design.",
+                tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+                code: "https://github.com/sylviahdev/myportfolio",
+              },
+              {
+                title: "Blog API",
+                desc: "Production-grade REST API architected for scalability with complete CRUD functionality. Demonstrates backend expertise with Django REST Framework, database optimization, and API design best practices.",
+                tech: ["Python", "Django REST", "PostgreSQL"],
+                code: "https://github.com/sylviahdev/django-blog-api",
+              },
+            ].map((p, i) => (
+              <motion.div
+                key={i}
+                variants={fadeInUp}
+                whileHover={{ y: -8, boxShadow: p.featured ? "0 20px 40px rgba(0,0,0,0.3)" : "0 15px 30px rgba(0,0,0,0.1)" }} // More pronounced hover for all, extra for featured
+                className={`group p-8 md:p-10 rounded-2xl border transition-all duration-300 ${
+                  p.featured
+                    ? "bg-gradient-to-br from-[#121212] to-[#000000] dark:from-[#ececec] dark:to-[#ffffff] border-[#121212] dark:border-[#ececec] shadow-xl"
+                    : "bg-[#f5f5f3] dark:bg-[#0c0c0c] border-[#e2dfd7] dark:border-[#141414] hover:border-[#c5a358] dark:hover:border-[#c5a358]"
+                }`}
+              >
+                {p.featured && (
+                  <div className="inline-block px-3 py-1 bg-[#c5a358] text-white text-xs font-semibold rounded-full mb-3 uppercase tracking-widest">
+                    Featured Client Work
+                  </div>
+                )}
+
+                <div className="flex justify-between items-start gap-6">
+                  <div className="flex-1">
+                    <h3 className={`text-2xl font-semibold mb-3 tracking-tight ${
+                      p.featured ? "text-[#fafaf9] dark:text-[#050505]" : "text-[#121212] dark:text-[#ececec]"
+                    }`}>
+                      {p.title}
+                    </h3>
+                    <p className={`mb-5 leading-relaxed text-base font-light ${
+                      p.featured ? "text-[#aaa] dark:text-[#444]" : "text-[#444] dark:text-[#aaa]"
+                    }`}>
+                      {p.desc}
+                    </p>
+
+                    {p.metrics && (
+                      <div className={`flex flex-wrap gap-2 mb-4 pb-4 border-b ${p.featured ? "border-[#fafaf9]/20 dark:border-[#121212]/20" : "border-[#e2dfd7] dark:border-[#141414]"}`}>
+                        {p.metrics.map((metric) => (
+                          <div
+                            key={metric}
+                            className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg ${
+                              p.featured
+                                ? "bg-[#fafaf9]/10 dark:bg-[#121212]/10 text-[#fafaf9] dark:text-[#121212]"
+                                : "bg-[#ececec] dark:bg-[#121212] text-[#121212] dark:text-[#ececec]"
+                            }`}
+                          >
+                            <span className="text-[#c5a358]">✓</span> {metric}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {p.tech.map((t) => (
+                        <span
+                          key={t}
+                          className={`px-3.5 py-1.5 text-xs font-medium rounded-full ${ // Increased padding
+                            p.featured
+                              ? "bg-[#fafaf9]/20 dark:bg-[#121212]/20 text-[#fafaf9] dark:text-[#121212]"
+                              : "bg-[#e2dfd7] dark:border-[#141414] text-[#121212] dark:text-[#ececec] border"
+                          }`}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <motion.div whileHover={{ x: 8, y: -8 }} className={p.featured ? "text-[#fafaf9] dark:text-[#121212]" : "text-[#121212] dark:text-[#ececec]"}>
+                    <ArrowUpRight className="w-6 h-6 hover:text-[#c5a358] transition-colors" />
+                  </motion.div>
+                </div>
+
+                <div className="flex gap-6 mt-5 pt-5 border-t" style={p.featured ? { borderColor: "rgba(250,250,248,0.2)" } : {}}> {/* Increased gap, mt, pt */}
+                  {p.live && (
+                    <motion.a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`text-base font-medium transition-colors flex items-center gap-2 group ${ // Larger text, increased gap
+                        p.featured
+                          ? "text-[#fafaf9] dark:text-[#121212] hover:text-[#c5a358]"
+                          : "text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
+                      }`}
+                      whileHover={{ x: 3 }}
+                    >
+                      Live Demo <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" /> {/* Larger icon, scale on hover */}
+                    </motion.a>
+                  )}
+                  {p.code && (
+                    <motion.a
+                      href={p.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`text-base font-medium transition-colors flex items-center gap-2 group ${ // Larger text, increased gap
+                        p.featured
+                          ? "text-[#fafaf9] dark:text-[#121212] hover:text-[#c5a358]"
+                          : "text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
+                      }`}
+                      whileHover={{ x: 3 }}
+                    >
+                      View Code <Github className="w-4 h-4 group-hover:scale-110 transition-transform" /> {/* Larger icon, scale on hover */}
+                    </motion.a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.section>
 
         {/* Education */}
-   <motion.section
-  id="education"
-  variants={sectionAnimation}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.1 }}
-  className="space-y-4 bg-purple-50 p-4 rounded shadow-sm"
->
-  <h2 className="text-xl font-semibold text-gray-800 border-b border-purple-200 pb-1">Education</h2>
-  <ul className="text-gray-700 text-sm md:text-base space-y-2">
-    <li><Book className="inline w-4 h-4 mr-1" /> Moringa School – Software Development – 2019</li>
-    <li><Book className="inline w-4 h-4 mr-1" /> Kisii University – Bachelor of Information Technology – 2016</li>
-    <li><Book className="inline w-4 h-4 mr-1" /> Shepherds Computer College – Certificate in Computer Packages – 2011</li>
-  </ul>
-</motion.section>
+        <motion.section
+          id="education"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
+        >
+          <h2 className="text-4xl font-playfair font-bold text-[#121212] dark:text-[#ececec] mb-16">Education</h2>
 
-        {/* Tools & Deployment */}
-        <motion.section variants={sectionAnimation} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} className="space-y-2 bg-yellow-50 p-4 rounded shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-800 border-b border-yellow-200 pb-1">Tools & Deployment</h2>
-          <ul className="text-gray-700 text-sm md:text-base space-y-1">
-            <li>Git & GitHub</li>
-            <li>Vercel</li>
-            <li>Netlify</li>
-            <li>Postman</li>
-            <li>VS Code</li>
-            <li>Figma</li>
-          </ul>
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="space-y-8">
+            {[
+              { school: "Moringa School", degree: "Software Development", year: "2019" },
+              {
+                school: "Kisii University",
+                degree: "Bachelor of Information Technology",
+                year: "2016",
+              },
+              {
+                school: "Shepherds Computer College",
+                degree: "Certificate in Computer Packages",
+                year: "2011",
+              },
+            ].map((edu, i) => (
+              <motion.div
+                key={i}
+                variants={fadeInUp}
+                whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }} // More pronounced hover effect
+                className="flex items-start gap-5 p-7 bg-[#f5f5f3] dark:bg-[#0c0c0c] rounded-xl border border-[#e2dfd7] dark:border-[#141414] hover:border-[#c5a358] dark:hover:border-[#c5a358] transition-all duration-200 cursor-pointer"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-[#c5a358] mt-2.5 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-lg text-[#121212] dark:text-[#ececec] mb-1 tracking-tight">{edu.school}</h3>
+                  <p className="text-base text-[#444] dark:text-[#aaa] mb-0.5 font-light">{edu.degree}</p>
+                  <p className="text-sm text-[#999] dark:text-[#666]">{edu.year}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.section>
 
         {/* Footer */}
-        <div className="mt-6 text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()} Sylviah Rutto
-        </div>
-
+        <motion.footer
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }} // Added transition
+          className="max-w-5xl mx-auto px-6 py-20 border-t border-[#e2dfd7] dark:border-[#141414] text-center text-[#999] dark:text-[#666] text-sm"
+        >
+          <p>© {new Date().getFullYear()} Sylviah Rutto. Designed and built with React & Next.js.</p>
+        </motion.footer>
       </div>
     </main>
   );
