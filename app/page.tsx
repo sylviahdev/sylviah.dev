@@ -312,8 +312,15 @@ export default function CVPage() {
                 desc: "Full-stack videography studio platform architected with React frontend and Flask backend. Features premium booking system with real-time availability, dynamic package management, and integrated payment processing. Implementing secure M-Pesa transaction handling via Daraja API with idempotent payment handlers, webhook verification, and callback validation. Modern luxury design optimized for conversion with WhatsApp and multi-channel contact integration. Production-grade payment pipeline ensuring transaction reliability and PCI compliance.",
                 tech: ["React", "Flask", "TypeScript", "Tailwind CSS", "Daraja API", "M-Pesa"],
                 live: "https://munitmediawebsite-msxp.vercel.app/",
+                code: "https://github.com/sylviahdev/munitmediawebsite",
                 featured: true,
-                
+              },
+              {
+                title: "Ekatrack",
+                desc: "Modern tracking application built with Next.js and deployed on Vercel. Delivers a fast, responsive interface with clean architecture and a focus on usability across devices.",
+                tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+                live: "https://vercel.com/sylviahdevs-projects/ekatrack",
+                code: "https://github.com/sylviahdev/ekatrack",
               },
               {
                 title: "Task Tracker",
@@ -333,6 +340,7 @@ export default function CVPage() {
                 title: "Professional Portfolio",
                 desc: "Premium portfolio design featuring smooth animations, responsive layouts, and optimized performance. Built with modern web standards demonstrating attention to user experience and visual design.",
                 tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+                live: "https://sylviahdev.vercel.app/",
                 code: "https://github.com/sylviahdev/myportfolio",
               },
               {
@@ -366,19 +374,6 @@ export default function CVPage() {
                     <p className="mb-6 leading-relaxed text-base sm:text-lg font-sans font-light text-[#444] dark:text-[#aaa]">
                       {p.desc}
                     </p>
-
-                    {p.metrics && (
-                      <div className={`flex flex-wrap gap-3 mb-6 pb-6 border-b ${p.featured ? "border-[#c5a358]/20" : "border-[#e2dfd7] dark:border-[#141414]"}`}>
-                        {p.metrics.map((metric) => (
-                          <div
-                            key={metric}
-                            className="px-3.5 py-1.5 text-xs font-sans font-semibold rounded-lg bg-[#ececec] dark:bg-[#121212] text-[#121212] dark:text-[#ececec]"
-                          >
-                            <span className="text-[#c5a358] mr-1">✦</span> {metric}
-                          </div>
-                        ))}
-                      </div>
-                    )}
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {p.tech.map((t) => (
