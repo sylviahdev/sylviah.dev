@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight, Download, MessageCircle } from "lucide-react";
-import { motion, useScroll, useSpring, Variants } from "framer-motion";
+import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight, Download, MessageCircle, ChevronDown } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 }, // Reduced y for better mobile stability
@@ -19,14 +19,7 @@ const staggerContainer: Variants = {
 
 export default function CVPage() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Framer Motion hooks for scroll progress
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  const [showMoreProjects, setShowMoreProjects] = useState(false);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -141,7 +134,7 @@ export default function CVPage() {
             >
               <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}>
                 <p className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-[#666] dark:text-[#999] mb-3">
-                  Full-Stack Developer
+                  Full-Stack Developer · Python &amp; React
                 </p>
               </motion.div>
 
@@ -221,7 +214,7 @@ export default function CVPage() {
                   GitHub
                 </motion.a>
                 <motion.a
-                  href="https://www.linkedin.com/in/sylviah-rutto-a7a17378/"
+                  href="https://www.linkedin.com/in/sylviah-rutto/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#e2dfd7] dark:border-[#2a2a26] bg-[#f5f5f3] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#fafaf8]
@@ -234,6 +227,10 @@ export default function CVPage() {
                   LinkedIn
                 </motion.a>
               </div>
+
+              <p className="mt-6 text-sm font-sans text-[#777] dark:text-[#888] tracking-wide text-center md:text-left">
+                Nairobi, Kenya · UTC+3 · English &amp; Swahili
+              </p>
             </motion.div>
           </div>
         </motion.section>
@@ -252,9 +249,6 @@ export default function CVPage() {
               <h2 className="text-4xl md:text-5xl font-playfair font-bold tracking-tight text-[#121212] dark:text-[#ececec] mb-4 md:mb-0">About</h2>
             </div>
             <div className="md:col-span-2 space-y-6"> {/* Increased space between paragraphs */}
-              <p className="text-xl font-sans font-light text-[#444] dark:text-[#aaa] leading-relaxed">
-                Backend-focused full-stack developer with strong frontend craft. I build secure Python APIs with Flask and Django and the React/Next.js interfaces that sit on top of them.
-              </p>
               <p className="text-xl font-sans font-light text-[#444] dark:text-[#aaa] leading-relaxed">
                 Full-stack developer building secure APIs, scalable backend systems, and modern web applications with a strong focus on performance, reliability, and production-ready architecture.
               </p>
@@ -291,7 +285,7 @@ export default function CVPage() {
                   <h3 className="font-playfair font-semibold text-xl md:text-2xl text-[#121212] dark:text-[#ececec] tracking-tight">
                      Full-Stack Developer
                   </h3>
-                  <p className="text-sm font-sans font-medium text-[#999] dark:text-[#666]">2019 – Present</p>
+                  <p className="text-sm font-sans font-medium text-[#999] dark:text-[#666]">2021 – Present</p>
                 </div>
                 <p className="text-sm font-sans text-[#666] dark:text-[#999] mb-5 italic">
                   Freelance & self-directed client work · Remote
@@ -326,6 +320,47 @@ export default function CVPage() {
 
                 <div className="flex flex-wrap gap-2 mt-6 pt-5 border-t border-[#e2dfd7] dark:border-[#141414]">
                   {["React", "Next.js", "TypeScript", "Python", "Flask", "Django", "PostgreSQL", "JWT", "Daraja API"].map((t) => (
+                    <span
+                      key={t}
+                      className="px-3 py-1 text-xs font-sans font-medium rounded-full bg-[#e2dfd7] dark:bg-[#1a1a1a] text-[#121212] dark:text-[#ececec] border border-[#e2dfd7] dark:border-[#2a2a26]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={fadeInUp}
+                className="p-7 md:p-8 bg-[#f5f5f3] dark:bg-[#0c0c0c] rounded-2xl border border-[#e2dfd7] dark:border-[#141414]"
+              >
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
+                  <h3 className="font-playfair font-semibold text-xl md:text-2xl text-[#121212] dark:text-[#ececec] tracking-tight">
+                    IT Support Officer
+                  </h3>
+                  <p className="text-sm font-sans font-medium text-[#999] dark:text-[#666]">2017 – 2018</p>
+                </div>
+                <p className="text-sm font-sans text-[#666] dark:text-[#999] mb-5 italic">
+                  Diire Investments · Westlands, Nairobi
+                </p>
+
+                <ul className="space-y-3 text-base font-sans font-light text-[#444] dark:text-[#aaa] leading-relaxed">
+                  <li className="flex gap-3">
+                    <span className="text-[#c5a358] mt-2 flex-shrink-0">•</span>
+                    <span>
+                      Provided first-line technical support across hardware, software, and networking for staff at an investment firm — workstation setup, troubleshooting, and resolution of day-to-day IT issues.
+                    </span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="text-[#c5a358] mt-2 flex-shrink-0">•</span>
+                    <span>
+                      Maintained internal systems and user accounts, supported software installations and upgrades, and kept the office IT environment stable for the team's daily operations.
+                    </span>
+                  </li>
+                </ul>
+
+                <div className="flex flex-wrap gap-2 mt-6 pt-5 border-t border-[#e2dfd7] dark:border-[#141414]">
+                  {["POS Systems", "Microsoft 365", "Remote Support", "Networking", "Hardware Support", "Help Desk"].map((t) => (
                     <span
                       key={t}
                       className="px-3 py-1 text-xs font-sans font-medium rounded-full bg-[#e2dfd7] dark:bg-[#1a1a1a] text-[#121212] dark:text-[#ececec] border border-[#e2dfd7] dark:border-[#2a2a26]"
@@ -407,74 +442,46 @@ export default function CVPage() {
           variants={fadeInUp}
           className="max-w-5xl mx-auto px-6 py-24 md:py-32 border-t border-[#e2dfd7] dark:border-[#141414]"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold tracking-tight text-[#121212] dark:text-[#ececec] mb-16">Featured Work</h2>
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold tracking-tight text-[#121212] dark:text-[#ececec] mb-4">Featured Work</h2>
+          <p className="text-base font-sans font-light text-[#666] dark:text-[#999] mb-16 max-w-2xl">
+            Production systems and client work I'm proudest of, followed by additional projects.
+          </p>
 
+          {/* Tier 1 — Featured (large cards) */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1, margin: "-50px" }}
-            className="space-y-12 md:space-y-16" // Increased space between projects
+            className="space-y-12 md:space-y-16"
           >
             {[
-              {
-                title: "M-Unit Media Website",
-                desc: "Full-stack videography studio platform architected with a React frontend and Flask backend. Features a booking system with real-time availability, dynamic package management, and integrated payment processing. Implements secure M-Pesa transaction handling via the Daraja API with idempotent payment handlers, webhook verification, and callback validation. Modern luxury design optimized for conversion with WhatsApp and multi-channel contact integration.",
-                tech: ["React", "Flask", "TypeScript", "Tailwind CSS", "Daraja API", "M-Pesa"],
-                live: "https://munitmediawebsite-msxp.vercel.app/",
-                code: "https://github.com/sylviahdev/munitmediawebsite",
-                featured: true,
-              },
               {
                 title: "Bank Analyzer",
                 desc: "Production-grade JSON API for uploading bank statements (.xlsx/.csv), automatically categorizing transactions, and generating downloadable summary spreadsheets. Implements secure JWT auth with bcrypt password hashing, token revocation via DB-backed denylist, per-user file isolation, strict CSP and HSTS headers via Flask-Talisman, and rate limiting on sensitive endpoints. Deployed on Render with PostgreSQL and Gunicorn.",
                 tech: ["Flask", "SQLAlchemy", "PostgreSQL", "JWT", "Pandas", "Gunicorn"],
                 live: "https://bankanalyzer-j0mk.onrender.com/",
+                liveNote: "Render free tier — may take ~30s to wake",
                 code: "https://github.com/sylviahdev/bankanalyzer",
               },
               {
-                title: "Ekatrack",
-                desc: "Modern tracking application built with Next.js and deployed on Vercel. Delivers a fast, responsive interface with clean architecture and a focus on usability across devices.",
-                tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-                live: "https://ekatrack.vercel.app/",
-                code: "https://github.com/sylviahdev/ekatrack",
-              },
-              {
-                title: "Task Tracker",
-                desc: "Full-featured productivity application with intuitive CRUD operations and persistent local storage. Demonstrates advanced React hooks patterns and responsive design principles for seamless task management across all devices.",
-                tech: ["React", "JavaScript", "Tailwind CSS"],
-                live: "https://task-tracker-eight-mu.vercel.app/",
-                code: "https://github.com/sylviahdev/react-hub",
-              },
-              {
-                title: "Weather App",
-                desc: "Real-time weather application integrating third-party APIs with beautiful data visualization. Showcases API integration expertise and modern UI patterns for displaying complex weather data intuitively.",
-                tech: ["React", "REST API", "JavaScript"],
-                live: "https://weathernow-wine.vercel.app/",
-                code: "https://github.com/sylviahdev/weathertoday",
-              },
-              {
-                title: "Blog API",
-                desc: "Production-grade REST API architected for scalability with complete CRUD functionality. Demonstrates backend expertise with Django REST Framework, database optimization, and API design best practices.",
-                tech: ["Python", "Django REST", "PostgreSQL"],
-                code: "https://github.com/sylviahdev/blog-api",
+                title: "M-Unit Media Website",
+                desc: "Full-stack videography studio platform architected with a React frontend and Flask backend. Features a booking system with real-time availability, dynamic package management, and integrated payment processing. Implements secure M-Pesa transaction handling via the Daraja API with idempotent payment handlers, webhook verification, and callback validation. Modern luxury design optimized for conversion with WhatsApp and multi-channel contact integration.",
+                tech: ["React", "Flask", "TypeScript", "Tailwind CSS", "Daraja API", "M-Pesa"],
+                live: "https://munitmediawebsite-msxp.vercel.app/",
+                liveNote: undefined,
+                code: "https://github.com/sylviahdev/munitmediawebsite",
               },
             ].map((p, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                whileHover={{ y: -5, boxShadow: p.featured ? "0 20px 40px rgba(0,0,0,0.2)" : "0 15px 30px rgba(0,0,0,0.05)" }}
-                className={`group p-6 sm:p-8 md:p-10 rounded-2xl border transition-all duration-300 ${
-                  p.featured
-                    ? "bg-white dark:bg-[#1a1a1a] border-[#c5a358] shadow-xl"
-                    : "bg-[#f5f5f3] dark:bg-[#0c0c0c] border-[#e2dfd7] dark:border-[#141414] hover:border-[#c5a358] dark:hover:border-[#c5a358]"
-                }`}
+                whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}
+                className="group p-6 sm:p-8 md:p-10 rounded-2xl border transition-all duration-300 bg-white dark:bg-[#1a1a1a] border-[#c5a358] shadow-xl"
               >
-                {p.featured && (
-                  <div className="inline-block px-3 py-1 bg-[#c5a358] text-white text-[10px] sm:text-xs font-bold rounded-full mb-4 uppercase tracking-widest">
-                    Featured Project
-                  </div>
-                )}
+                <div className="inline-block px-3 py-1 bg-[#c5a358] text-white text-[10px] sm:text-xs font-bold rounded-full mb-4 uppercase tracking-widest">
+                  Featured Project
+                </div>
 
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex-1">
@@ -489,7 +496,7 @@ export default function CVPage() {
                       {p.tech.map((t) => (
                         <span
                           key={t}
-                          className="px-3.5 py-1.5 text-xs font-sans font-medium rounded-full bg-[#e2dfd7] dark:border-[#141414] text-[#121212] dark:text-[#ececec] border"
+                          className="px-3.5 py-1.5 text-xs font-sans font-medium rounded-full bg-[#e2dfd7] dark:bg-[#0c0c0c] text-[#121212] dark:text-[#ececec] border border-[#e2dfd7] dark:border-[#2a2a26]"
                         >
                           {t}
                         </span>
@@ -501,17 +508,24 @@ export default function CVPage() {
                   </div>
                 </div>
 
-                <div className={`flex flex-wrap gap-x-6 gap-y-4 mt-5 pt-5 border-t ${p.featured ? "border-[#c5a358]/20" : "border-[#e2dfd7] dark:border-[#141414]"}`}>
+                <div className="flex flex-wrap gap-x-6 gap-y-4 mt-5 pt-5 border-t border-[#c5a358]/20 items-center">
                   {p.live && (
-                    <motion.a
-                      href={p.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-base font-sans font-medium transition-colors flex items-center gap-2 group text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
-                      whileHover={{ x: 3 }}
-                    >
-                      Live Demo <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" /> {/* Larger icon, scale on hover */}
-                    </motion.a>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <motion.a
+                        href={p.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-base font-sans font-medium transition-colors flex items-center gap-2 group text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
+                        whileHover={{ x: 3 }}
+                      >
+                        Live Demo <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      </motion.a>
+                      {p.liveNote && (
+                        <span className="text-xs font-sans text-[#999] dark:text-[#666] italic">
+                          {p.liveNote}
+                        </span>
+                      )}
+                    </div>
                   )}
                   {p.code && (
                     <motion.a
@@ -521,13 +535,129 @@ export default function CVPage() {
                       className="text-base font-sans font-medium transition-colors flex items-center gap-2 group text-[#121212] dark:text-[#ececec] hover:text-[#c5a358]"
                       whileHover={{ x: 3 }}
                     >
-                      View Code <Github className="w-4 h-4 group-hover:scale-110 transition-transform" /> {/* Larger icon, scale on hover */}
+                      View Code <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
                     </motion.a>
                   )}
                 </div>
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Section divider */}
+          <div className="flex items-center gap-4 mt-20 mb-10">
+            <h3 className="text-xl md:text-2xl font-playfair font-semibold tracking-tight text-[#121212] dark:text-[#ececec] whitespace-nowrap">
+              Other Projects
+            </h3>
+            <div className="flex-1 h-px bg-[#e2dfd7] dark:bg-[#2a2a26]" />
+          </div>
+
+          {/* Tier 2 + Tier 3 — Compact grid. Tier 3 reveals on toggle; always shown on print. */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1, margin: "-50px" }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            {[
+              {
+                title: "Ekatrack",
+                desc: "Modern tracking application built with Next.js and deployed on Vercel. Delivers a fast, responsive interface with clean architecture and a focus on usability across devices.",
+                tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+                live: "https://ekatrack.vercel.app/",
+                code: "https://github.com/sylviahdev/ekatrack",
+                tier: 2,
+              },
+              {
+                title: "Blog API",
+                desc: "REST API with complete CRUD functionality built with Django REST Framework — clean URL routing, serializers, and PostgreSQL persistence. A focused exercise in Django backend conventions.",
+                tech: ["Python", "Django REST", "PostgreSQL"],
+                code: "https://github.com/sylviahdev/blog-api",
+                tier: 2,
+              },
+              {
+                title: "Task Tracker",
+                desc: "React CRUD app with persistent localStorage. A small exercise in React hooks patterns and responsive design.",
+                tech: ["React", "JavaScript", "Tailwind CSS"],
+                live: "https://task-tracker-eight-mu.vercel.app/",
+                code: "https://github.com/sylviahdev/react-hub",
+                tier: 3,
+              },
+              {
+                title: "Weather App",
+                desc: "React app consuming a third-party weather API with a clean data-display UI. A small exercise in API integration.",
+                tech: ["React", "REST API", "JavaScript"],
+                live: "https://weathernow-wine.vercel.app/",
+                code: "https://github.com/sylviahdev/weathertoday",
+                tier: 3,
+              },
+            ].map((p, i) => {
+              const hiddenOnScreen = p.tier === 3 && !showMoreProjects;
+              return (
+                <motion.div
+                  key={p.title + i}
+                  variants={fadeInUp}
+                  whileHover={{ y: -3, boxShadow: "0 10px 24px rgba(0,0,0,0.06)" }}
+                  className={`group p-6 rounded-2xl border bg-[#f5f5f3] dark:bg-[#0c0c0c] border-[#e2dfd7] dark:border-[#141414] hover:border-[#c5a358] dark:hover:border-[#c5a358] transition-all duration-300 flex-col ${hiddenOnScreen ? "hidden print:flex" : "flex"}`}
+                >
+                  <div className="flex justify-between items-start gap-3 mb-3">
+                    <h3 className="text-xl font-playfair font-semibold tracking-tight text-[#121212] dark:text-[#ececec]">
+                      {p.title}
+                    </h3>
+                    <ArrowUpRight className="w-5 h-5 text-[#121212] dark:text-[#ececec] group-hover:text-[#c5a358] transition-colors flex-shrink-0" />
+                  </div>
+                  <p className="mb-4 leading-relaxed text-sm font-sans font-light text-[#444] dark:text-[#aaa] flex-1">
+                    {p.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {p.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2.5 py-1 text-xs font-sans font-medium rounded-full bg-[#e2dfd7] dark:bg-[#1a1a1a] text-[#121212] dark:text-[#ececec] border border-[#e2dfd7] dark:border-[#2a2a26]"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-x-4 gap-y-2 pt-3 border-t border-[#e2dfd7] dark:border-[#141414]">
+                    {p.live && (
+                      <a
+                        href={p.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-sans font-medium flex items-center gap-1.5 text-[#121212] dark:text-[#ececec] hover:text-[#c5a358] transition-colors"
+                      >
+                        Live <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    {p.code && (
+                      <a
+                        href={p.code}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-sans font-medium flex items-center gap-1.5 text-[#121212] dark:text-[#ececec] hover:text-[#c5a358] transition-colors"
+                      >
+                        Code <Github className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          {/* Show more / less toggle */}
+          <div className="flex justify-center mt-10 print:hidden">
+            <motion.button
+              onClick={() => setShowMoreProjects(!showMoreProjects)}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-2 px-6 py-3 rounded-full border border-[#e2dfd7] dark:border-[#2a2a26] bg-[#f5f5f3] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#fafaf8] font-sans font-medium text-sm hover:border-[#c5a358] hover:text-[#c5a358] transition-all duration-300"
+            >
+              {showMoreProjects ? "Show fewer projects" : "Show 2 more projects"}
+              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showMoreProjects ? "rotate-180" : ""}`} />
+            </motion.button>
+          </div>
         </motion.section>
 
         {/* Education */}
@@ -543,16 +673,11 @@ export default function CVPage() {
 
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1, margin: "-50px" }} className="space-y-8">
             {[
-              { school: "Moringa School", degree: "Software Development", year: "2019" },
+              { school: "Moringa School", degree: "Software Development", year: "April – December 2019" },
               {
                 school: "Kisii University",
                 degree: "Bachelor of Information Technology",
-                year: "2016",
-              },
-              {
-                school: "Shepherds Computer College",
-                degree: "Certificate in Computer Packages",
-                year: "2011",
+                year: "2012 – 2015",
               },
             ].map((edu, i) => (
               <motion.div
@@ -590,7 +715,7 @@ export default function CVPage() {
               Seeking opportunities to build reliable, <span className="text-[#c5a358]">production-ready software.</span>
             </h2>
             <p className="text-xl font-sans font-light text-[#aaa] dark:text-[#444] mb-12 max-w-2xl mx-auto">
-              Open to full-time backend or full-stack engineering roles, especially with teams building production-grade systems. Remote-friendly.
+              Open to full-time backend or full-stack engineering roles, especially with teams building production-grade systems. Remote-friendly. Available immediately.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <a
@@ -601,7 +726,7 @@ export default function CVPage() {
                 Email Me
               </a>
               <a
-                href="https://www.linkedin.com/in/sylviah-rutto-a7a17378/"
+                href="https://www.linkedin.com/in/sylviah-rutto/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-12 py-5 bg-transparent border border-[#c5a358] text-[#c5a358] rounded-full font-sans font-bold text-xl hover:bg-[#c5a358]/10 hover:scale-105 transition-transform w-full sm:w-auto flex items-center gap-2 justify-center"

@@ -15,12 +15,11 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Sylviah Rutto — Backend & Full-Stack Developer",
-  description: "Backend focused full-stack developer building secure Python APIs (Flask, Django) and React/Next.js frontends. Featured work: a production fintech API with JWT auth, rate limiting, and hardened uploads.",
+  title: "Sylviah Rutto — Full-Stack Developer",
+  description: "Full-stack developer building secure APIs, scalable backend systems, and modern web applications. Featured work includes a production fintech API with JWT auth, rate limiting, and hardened uploads.",
   keywords: [
     "Sylviah Rutto",
     "Full-stack developer",
-    "Backend developer",
     "Python developer",
     "Flask developer",
     "Django developer",
@@ -31,15 +30,15 @@ export const metadata: Metadata = {
     "Nairobi developer",
   ],
   openGraph: {
-    title: "Sylviah Rutto — Backend & Full-Stack Developer",
-    description: "Backend-focused full-stack developer building secure Python APIs and React/Next.js frontends. Production fintech work, JWT auth, rate limiting, hardened uploads.",
+    title: "Sylviah Rutto — Full-Stack Developer",
+    description: "Full-stack developer building secure APIs, scalable backend systems, and modern web applications. Production-grade fintech work with JWT auth, rate limiting, and hardened uploads.",
     type: "website",
     images: ["/profile.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sylviah Rutto — Backend & Full-Stack Developer",
-    description: "Backend-focused full-stack developer. Secure Python APIs, React/Next.js, fintech projects.",
+    title: "Sylviah Rutto — Full-Stack Developer",
+    description: "Full-stack developer. Secure Python APIs, React/Next.js, production-grade fintech projects.",
     images: ["/profile.jpg"],
   },
 };
