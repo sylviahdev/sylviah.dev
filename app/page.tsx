@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight, Download } from "lucide-react";
+import { Github, ExternalLink, Mail, Linkedin, Menu, X, ArrowUpRight, Download, MessageCircle } from "lucide-react";
 import { motion, useScroll, useSpring, Variants } from "framer-motion";
 
 const fadeInUp: Variants = {
@@ -141,7 +141,7 @@ export default function CVPage() {
             >
               <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}>
                 <p className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-[#666] dark:text-[#999] mb-3">
-                  Backend-Focused Full-Stack Developer
+                  Full-Stack Developer
                 </p>
               </motion.div>
 
@@ -150,7 +150,7 @@ export default function CVPage() {
               </h1>
 
               <p className="text-lg md:text-xl font-sans font-light text-[#555] dark:text-[#ccc] mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
-                Backend-focused full-stack developer building secure Python APIs and React/Next.js frontends. Recent work includes a production fintech API for bank statement analysis with JWT auth, rate limiting, and a hardened upload pipeline.
+                Full-stack developer building secure Python APIs and React/Next.js frontends. Recent work includes a production fintech API for bank statement analysis with JWT auth, rate limiting, and a hardened upload pipeline.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-10 justify-center md:justify-start print:hidden">
@@ -193,6 +193,19 @@ export default function CVPage() {
                 >
                   <Mail className="w-5 h-5" />
                   sylviah.rutto@gmail.com
+                </motion.a>
+                <motion.a
+                  href="https://wa.me/254758668360"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#e2dfd7] dark:border-[#2a2a26] bg-[#f5f5f3] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#fafaf8]
+                             font-sans font-medium text-sm hover:bg-[#c5a358]/10 hover:border-[#c5a358] hover:text-[#c5a358]
+                             focus:outline-none focus:ring-2 focus:ring-[#c5a358] focus:ring-offset-2 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  WhatsApp
                 </motion.a>
                 <motion.a
                   href="https://github.com/sylviahdev"
