@@ -47,3 +47,77 @@ h1, h2, h3, h4, h5, h6 {
 a {
   transition: color 0.2s ease;
 }
+
+@media print {
+  @page {
+    margin: 0.5in;
+    size: A4;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt;
+  }
+
+  /* Force light theme regardless of system preference */
+  .dark\:bg-\[\#0f0f0d\],
+  .dark\:bg-\[\#0c0c0c\],
+  .dark\:bg-\[\#1a1a1a\],
+  .dark\:bg-\[\#141414\] {
+    background: #ffffff !important;
+  }
+
+  /* Override muted dark-mode text so it's readable on paper */
+  [class*="dark:text-"] {
+    color: #1a1a1a !important;
+  }
+
+  /* Kill animations, shadows, and transforms */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Make hyperlinks legible on paper — show the URL after the link text */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555;
+    word-break: break-all;
+  }
+
+  /* Don't print URL suffix for in-page anchors or mailto */
+  a[href^="#"]::after,
+  a[href^="mailto:"]::after {
+    content: "";
+  }
+
+  /* Prevent awkward page breaks inside cards */
+  section, article, h2, h3 {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Tighten section spacing for paper */
+  section {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  #cv-content {
+    padding-top: 0 !important;
+  }
+}
