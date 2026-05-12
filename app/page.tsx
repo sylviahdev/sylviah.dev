@@ -143,7 +143,7 @@ export default function CVPage() {
               </h1>
 
               <p className="text-lg md:text-xl font-sans font-light text-[#555] dark:text-[#ccc] mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
-                Full-stack developer building secure Python APIs and React/Next.js frontends. Recent work includes a production fintech API for bank statement analysis with JWT auth, rate limiting, and a hardened upload pipeline.
+                Full-Stack Developer building secure web applications and APIs with Python, React, and Next.js. Experienced with M-Pesa integrations, JWT authentication, rate limiting, and secure upload systems.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-10 justify-center md:justify-start print:hidden">
@@ -348,13 +348,13 @@ export default function CVPage() {
                   <li className="flex gap-3">
                     <span className="text-[#c5a358] mt-2 flex-shrink-0">•</span>
                     <span>
-                      Provided first-line technical support across hardware, software, and networking for staff at an investment firm — workstation setup, troubleshooting, and resolution of day-to-day IT issues.
+                      Provided technical support across POS systems, Microsoft 365, and remote-access tooling for staff at an investment firm — workstation setup, troubleshooting, and resolution of day-to-day IT issues.
                     </span>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-[#c5a358] mt-2 flex-shrink-0">•</span>
                     <span>
-                      Maintained internal systems and user accounts, supported software installations and upgrades, and kept the office IT environment stable for the team's daily operations.
+                      Maintained user accounts and internal systems, supported software installations and upgrades, and kept the office IT environment stable for the team's daily operations.
                     </span>
                   </li>
                 </ul>
@@ -390,7 +390,7 @@ export default function CVPage() {
               {
                 tier: "Primary",
                 hint: "Load-bearing in shipped production work",
-                items: ["Python", "Flask", "PostgreSQL", "REST APIs", "JWT / Auth", "React.js", "Next.js", "TypeScript", "Tailwind CSS"],
+                items: ["Python", "Flask", "PostgreSQL", "REST APIs", "JWT / Auth", "M-Pesa / Daraja API", "React.js", "Next.js", "TypeScript", "Tailwind CSS"],
               },
               {
                 tier: "Working Knowledge",

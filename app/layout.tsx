@@ -43,6 +43,39 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sylviah Rutto",
+  jobTitle: "Full-Stack Developer",
+  description:
+    "Full-Stack Developer building secure web applications and APIs with Python, React, and Next.js. Experienced with M-Pesa integrations, JWT authentication, rate limiting, and secure upload systems.",
+  email: "mailto:sylviah.rutto@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Nairobi",
+    addressCountry: "KE",
+  },
+  knowsLanguage: ["English", "Swahili"],
+  knowsAbout: [
+    "Python",
+    "Flask",
+    "Django",
+    "PostgreSQL",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JWT Authentication",
+    "M-Pesa Daraja API",
+    "REST APIs",
+    "API Security",
+  ],
+  sameAs: [
+    "https://github.com/sylviahdev",
+    "https://www.linkedin.com/in/sylviah-rutto/",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,6 +86,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         {children}
       </body>
     </html>
